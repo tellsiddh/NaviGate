@@ -26,19 +26,26 @@ NaviGate is a console application that allows you to navigate through directorie
 
 NaviGate is a lightweight console application that doesn't require a high-performing system. However, there are some basic system requirements and platform dependencies you should be aware of before installing.
 
-# System Requirements
+### System Requirements
 
 Windows 7 or later.
+
 At least 2GB of RAM.
+
 At least 100MB of free disk space.
+
 A processor supporting SSE2 (Pentium 4 or newer).
 
-# Platform Dependencies
+### Platform Dependencies
 
 NaviGate is developed and tested on a Windows-based system. It is designed to work with Windows 7 and later.
+
 You will need GCC (GNU Compiler Collection) installed in your system to compile the source code. It is available for free download and installation here https://gcc.gnu.org/install/index.html.
+
 NaviGate relies on standard C libraries for its operation. Ensure your system supports the execution of C programs.
+
 Git should be installed in your system to clone the repository. If not already installed, you can download it from the official Git website https://git-scm.com/downloads.
+
 Remember, NaviGate is a console-based application, it doesn't provide a Graphical User Interface (GUI). It is intended for users who are comfortable using a command-line interface.
 
 ## Installation
