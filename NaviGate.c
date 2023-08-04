@@ -4,6 +4,8 @@
 #include <windows.h>
 #include <direct.h>
 #include <string.h>
+#include <shellapi.h>
+
 
 #define SIZE 100
 #define VIEW_SIZE 20
@@ -215,12 +217,15 @@ int main() {
                 system("pause");
             }
         } else if(ch == 13) {  // Enter key
-            if(!viewing_file && selected == item_count-1) {  // "Quit" option
-                break;
-            }
-            printf("You selected %s\n", menu_items[selected]);
-            system("pause");
-        }
+    if(!viewing_file && selected == item_count-1) {  // "Quit" option
+        break;
+    }
+    if (!viewing_file) { // if we are not viewing a file, try to open it
+        ShellExecute(NULL, "open", menu_items[selected], NULL, NULL, SW_SHOW);
+    }
+    printf("You selected %s\n", menu_items[selected]);
+    system("pause");
+}
     }
 
     // Free memory allocated for menu items
