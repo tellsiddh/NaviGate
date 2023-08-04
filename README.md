@@ -55,15 +55,20 @@ Clone this repository to your local machine to get started.
 
 
 git clone https://github.com/tellsiddh/NaviGate.git
+
 cd NaviGate
+
 Usage
+
 After cloning the repository, navigate to the repository folder and compile the source code:
 
 
 gcc main.c -o NaviGate
+
 Now you can start the program:
 
 ./NaviGate
+
 Use the arrow keys to navigate through directories and files, press Enter to open a directory or view a file, and press q or Q to quit the program.
 
 ## Contribution
