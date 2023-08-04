@@ -20,6 +20,8 @@ NaviGate is a console application that allows you to navigate through directorie
 
 - Navigate directories using arrow keys.
 - Open directories and view file contents directly from the console.
+- Search for specific files or directories.
+- Open files with their default Windows applications.
 - Simple, lightweight, and quick to use.
 
 
@@ -69,7 +71,9 @@ Now you can start the program:
 
 ./NaviGate
 
-Use the arrow keys to navigate through directories and files, press Enter to open a directory or view a file, and press q or Q to quit the program.
+Use the arrow keys to navigate through directories and files, press Enter to open a directory or view a file, press 's' or 'S' to search for files or directories, and press 'q' or 'Q' to quit the program.
+
+When a file is selected, press 'ENTER' to open it with its default Windows application or Right Arrow Key to open it in the terminal. If a search is initiated, type the name of the file or directory and press Enter, the cursor will navigate to the searched item if found, or you can exit search by pressing ESC.
 
 ## Contribution
 Contributions are welcome! Please read the contribution guidelines first.
