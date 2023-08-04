@@ -6,6 +6,7 @@ _NaviGate is a simple and user-friendly console application for navigating direc
 
 - [Introduction](#introduction)
 - [Features](#features)
+- [System Requirements and Platform Dependencies](#system-requirements-and-platform-dependencies)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contribution](#contribution)
