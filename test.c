@@ -10,9 +10,6 @@
 
 int viewing_file = 0; // Add this at the start of your main function
 char current_file[1024]; // keep track of the current file being viewed
-HANDLE hConsole;
-CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
-WORD saved_attributes;
 
 void print_menu(char *items[], int selected, int start, int size) {
     system("cls");  // Clear console
@@ -76,6 +73,37 @@ void get_directory_contents(char* menu_items[], int* item_count) {
     (*item_count)++;
 }
 
+int search_in_current_directory(char* menu_items[], int* item_count, char* target) {
+    WIN32_FIND_DATA FindFileData;
+    HANDLE hFind;
+
+    hFind = FindFirstFile(".\\*", &FindFileData);
+    if (hFind == INVALID_HANDLE_VALUE) {
+        printf ("FindFirstFile failed (%d)\n", GetLastError());
+        return -1;
+    }
+    else {
+        int i = 0;
+        do {
+            if(_stricmp(FindFileData.cFileName, target) == 0) {
+                printf("Found: %s\n", FindFileData.cFileName);
+                printf("Press Enter to select this file, or Esc to continue search\n");
+                int ch = getch();
+                if(ch == 13) {  // Enter key
+                    FindClose(hFind);
+                    return i;
+                } else if(ch == 27) {  // Esc key
+                    FindClose(hFind);
+                    return -1;
+                }
+            }
+            i++;
+        } while (FindNextFile(hFind, &FindFileData) != 0);
+        FindClose(hFind);
+    }
+    return -1;
+}
+
 int main() {
     char *menu_items[SIZE];
     int item_count;
@@ -83,10 +111,6 @@ int main() {
     int ch;
     int start = 0;
     int file_line_start = 0;
-
-    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
-    saved_attributes = consoleInfo.wAttributes;
 
     item_count = 0;
     get_directory_contents(menu_items, &item_count);
@@ -99,12 +123,6 @@ int main() {
         }
 
         ch = getch();
-        
-        if(ch == 'q' || ch == 'Q') {
-    break;
-}
-
-
         if(ch == 0 || ch == 224) {
             switch(getch()) {
                 case 72:  // Up arrow key
@@ -176,9 +194,25 @@ int main() {
                     }
                     break;
             }
-        } else if(ch == 27) {  // ESC key
+} else if(ch == 'q' || ch == 'Q') {  // Q key
             if(viewing_file) {
                 viewing_file = 0;
+            } else {
+                break;
+            }
+        } else if(ch == 's' || ch == 'S') {  // S key
+            if(!viewing_file) {
+                char search_target[1024];
+                printf("Enter search term: ");
+                scanf("%s", search_target);
+                int result = search_in_current_directory(menu_items, &item_count, search_target);
+                if(result != -1) {
+                    selected = result;
+                    if(selected >= start + VIEW_SIZE) {
+                        start = selected - VIEW_SIZE + 1;
+                    }
+                }
+                system("pause");
             }
         } else if(ch == 13) {  // Enter key
             if(!viewing_file && selected == item_count-1) {  // "Quit" option
