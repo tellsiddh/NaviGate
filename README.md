@@ -18,26 +18,24 @@ NaviGate is a console application that allows you to navigate through directorie
 
 ## Features
 
-- Navigate directories using arrow keys.
-- Open directories and view file contents directly from the console.
-- Search for specific files or directories.
-- Open files with their default Windows applications.
-- Simple, lightweight, and quick to use.
+- Intuitive directory navigation using arrow keys.
+- Preview file content within the console.
+- Locate specific files or directories with an inbuilt search function.
+- Launch files using their associated Windows application.
+- User-centric design, prioritizing simplicity and speed.
 
 
 ## System Requirements and Platform Dependencies
 
-NaviGate is a lightweight console application that doesn't require a high-performing system. However, there are some basic system requirements and platform dependencies you should be aware of before installing.
-
 ### System Requirements
 
-Windows 7 or later.
+- Operating System: Windows 7 or higher.
 
-At least 2GB of RAM.
+- Memory: Minimum 2GB RAM.
 
-At least 100MB of free disk space.
+- Disk Space: At least 100MB available.
 
-A processor supporting SSE2 (Pentium 4 or newer).
+- Processor: A CPU with SSE2 support (e.g., Pentium 4 or newer).
 
 ### Platform Dependencies
 
@@ -65,11 +63,11 @@ Usage
 After cloning the repository, navigate to the repository folder and compile the source code:
 
 
-gcc main.c -o NaviGate
+gcc NaviGate.c -o NaviGate
 
 Now you can start the program:
 
-./NaviGate
+NaviGate.exe
 
 Use the arrow keys to navigate through directories and files, press Enter to open a directory or view a file, press 's' or 'S' to search for files or directories, and press 'q' or 'Q' to quit the program.
 
