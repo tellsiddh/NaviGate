@@ -22,9 +22,28 @@ void print_menu(char *items[], int selected, int start, int size) {
         if(i == selected) {
             printf(">> ");  // Indicator for the currently selected item
         }
-        printf("%s\n", items[i]);
+
+        // Check if the current item is a directory or a file
+        WIN32_FIND_DATA FindFileData;
+        HANDLE hFind;
+        hFind = FindFirstFile(items[i], &FindFileData);
+        if (hFind != INVALID_HANDLE_VALUE) {
+            LARGE_INTEGER fileSize;
+            fileSize.LowPart = FindFileData.nFileSizeLow;
+            fileSize.HighPart = FindFileData.nFileSizeHigh;
+            if(FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+                printf("[DIR]	%s\n", items[i]);
+            } else {
+                printf("[FILE]	%s	%15lld bytes\n", items[i], fileSize.QuadPart);
+            }
+            FindClose(hFind);
+        } else {
+            printf("[FILE]	%s\n", items[i]); // In case FindFirstFile fails, just print the item.
+        }
     }
 }
+
+
 
 void print_file(char *filename, int start_line) {
     system("cls");  // Clear console
